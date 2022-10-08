@@ -3,9 +3,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: petclinic-deployment
+  name: ekscluster-deployment
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -13,14 +13,14 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: petclinic-app
+      app: ekscluster-app
   template:
     metadata:
       labels:
-        app: petclinic-app
+        app: ekscluster-app
     spec:
       containers:
-      - name: petclinic-container
+      - name: ekscluster-app-container
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: Always
         resources:
